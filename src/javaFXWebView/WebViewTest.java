@@ -34,7 +34,7 @@ public class WebViewTest extends Application {
         
         //adiciona a url
         
-        webEngine.load("http://www.gosugamers.net/");
+        webEngine.load("http://g1.globo.com/");
         
         ScrollPane scrollPane = new ScrollPane(webView);
         
