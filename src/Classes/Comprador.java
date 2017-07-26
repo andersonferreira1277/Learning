@@ -10,7 +10,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Anderson Ferreira Câmara (andersonferreira1277@gmail.com)
+ * @author Anderson Ferreira Câmara (andersonferreira1277@gmail.com) Ufal
  */
 public class Comprador {
     private Integer id;
