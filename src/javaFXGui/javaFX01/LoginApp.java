@@ -1,4 +1,4 @@
-package javaFX.javaFX01;
+package javaFXGui.javaFX01;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
