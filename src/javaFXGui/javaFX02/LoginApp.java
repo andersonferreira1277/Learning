@@ -99,7 +99,12 @@ public class LoginApp extends Application{
 	
 	private void logar() {
 		if (txLogin.getText().equals("admin") && pwSenha.getText().equals("12345")) {
-			System.out.println("Logado");
+			try {
+				new VitrineApp().start(new Stage());
+				LoginApp.getStage().close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Usuario e/ou senha inválidos", "Erro", JOptionPane.ERROR_MESSAGE);
 		}
