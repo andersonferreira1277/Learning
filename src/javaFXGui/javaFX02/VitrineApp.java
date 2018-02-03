@@ -1,12 +1,13 @@
 package javaFXGui.javaFX02;
 
-import java.util.Observable;
 
 import javafx.application.Application;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -51,6 +52,11 @@ public class VitrineApp extends Application{
 		public void setPreco(double preco) {
 			this.preco.set(preco);
 		}
+
+		@Override
+		public String toString() {
+			return "ItensProperty [produto=" + produto + ", preco=" + preco + "]";
+		}
 		
 	}
 	
@@ -63,29 +69,36 @@ public class VitrineApp extends Application{
 		txPesquisa.setText("Digite um item para pesquisa");
 		
 		tbVitrine = new TableView<ItensProperty>();
-		tbVitrine.setPrefSize(780, 550);
+		tbVitrine.setLayoutY(35);
+		tbVitrine.setLayoutX(20);
+		tbVitrine.setPrefSize(760, 550);
 		
-		columnProduto = new TableColumn<ItensProperty, String>();
+		columnProduto = new TableColumn<ItensProperty, String>("Produto");
 		
-		columnPreco = new TableColumn<ItensProperty, Double>();
-		
-		columnProduto.setCellValueFactory(new PropertyValueFactory<ItensProperty, String>("Produto"));
-		
-		columnPreco.setCellValueFactory(new PropertyValueFactory<ItensProperty, Double>("Preço"));
-		
+		columnPreco = new TableColumn<ItensProperty, Double>("Preço");
+				
 		tbVitrine.getColumns().addAll(columnProduto, columnPreco);
 		
 		pane.getChildren().addAll(txPesquisa, tbVitrine);
 		
 		carrinho = new Carrinho();
 		
+		columnProduto.setCellValueFactory(new PropertyValueFactory<ItensProperty, String>("produto"));
+		columnProduto.setPrefWidth(690);
+		
+		columnPreco.setCellValueFactory(new PropertyValueFactory<ItensProperty, Double>("preco"));
+		columnPreco.setPrefWidth(75);
+		
 		tbVitrine.setItems(listaItens);
+		
+		pane.setStyle("-fx-background-color: linear-gradient(from 0% 0% " +
+                "to 100% 100%, blue 0%, silver 100%);");
 		
 		cena = new Scene(pane);
 		
 	}
 	
-	public void initItens() {
+	private void initItens() {
 		
 		Vitrine v = new Vitrine();
 		v.addProduto(new Produto("Bola Topper", 15.00), new Produto("Luvas Umbro", 9.00), 
@@ -94,23 +107,50 @@ public class VitrineApp extends Application{
 		for (Produto p : v.getProdutos()) {
 			listaItens.add(new ItensProperty(p.getProduto(), p.getPreco()));
 		}
-		
+				
 	}
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	private void initListeners() {
+		txPesquisa.setOnKeyReleased(new EventHandler<Event>() {
 
+			@Override
+			public void handle(Event event) {
+				System.out.println("Ativado");
+				if (txPesquisa.getText().equals("")) {
+					tbVitrine.setItems(listaItens);
+				} else {
+					tbVitrine.setItems(findItems());
+				}
+			}
+			
+		});;
+	} 
+	
+	public static void main(String[] args) {
+		
 	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		initComponets();
 		initItens();
+		initListeners();
 		
 		primaryStage.setScene(cena);
 		primaryStage.setTitle("Hello JavaFX");
 		primaryStage.show();
 		
+	}
+	
+	private ObservableList<ItensProperty> findItems(){
+		ObservableList<ItensProperty> itensEncontrados = FXCollections.observableArrayList();
+		
+		for (ItensProperty item : listaItens) {
+			if (item.getProduto().contains(txPesquisa.getText())) {
+				itensEncontrados.add(item);
+			};
+		}
+		return itensEncontrados;
 	}
 
 }

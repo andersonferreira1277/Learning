@@ -76,6 +76,14 @@ public class LoginApp extends Application{
 			}
 			
 		});
+		pwSenha.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				logar();
+			}
+			
+		});
 	}
 	
     @Override
