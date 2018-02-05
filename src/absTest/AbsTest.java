@@ -11,9 +11,9 @@ package absTest;
  * @author Anderson Ferreira Câmara (andersonferreira1277@gmail.com)
  */
 public class AbsTest {
-    public static void main(String[] args) {
-        int x = -11;
-        int y = 1;
-        System.out.println(Math.abs(x-y));
-    }
+	public static void main(String[] args) {
+		int x = -11;
+		int y = 1;
+		System.out.println(Math.abs(x - y));
+	}
 }
