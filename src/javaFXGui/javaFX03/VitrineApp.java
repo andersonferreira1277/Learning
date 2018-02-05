@@ -1,9 +1,13 @@
 package javaFXGui.javaFX03;
 
 
+import com.sun.org.apache.xerces.internal.xs.ItemPSVI;
+
 import javafx.application.Application;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -124,6 +128,26 @@ public class VitrineApp extends Application{
 			}
 			
 		});;
+		
+		tbVitrine.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ItensProperty>() {
+
+			@Override
+			public void changed(ObservableValue<? extends ItensProperty> value, ItensProperty oldItem, ItensProperty newItem) {
+				
+				// Indicando os valores de produto e index
+				ItemApp.setProduto(new Produto(newItem.getProduto(), newItem.getPreco()));
+				ItemApp.setIndex(tbVitrine.getSelectionModel().getSelectedIndex());
+				
+				// chamando o formulario de exibição do item
+				
+				try {
+					new ItemApp().start(new Stage());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
+		});
 	} 
 	
 	public static void main(String[] args) {
