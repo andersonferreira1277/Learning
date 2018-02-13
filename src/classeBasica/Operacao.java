@@ -42,18 +42,4 @@ public class Operacao {
         this.numero2 = numero2;
     }
 
-    public static void main(String[] args) {
-        Operacao a = new Operacao();
-        a.setNumero1(5f);
-        a.setNumero2(3f);
-        System.out.println(a.somar());
-        System.out.println(a.subtrair());
-        try {
-            System.out.println(a.dividir());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println(a.multiplicar());
-        System.out.println(a.elevar());
-    }
 }
