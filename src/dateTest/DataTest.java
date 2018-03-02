@@ -10,6 +10,11 @@ public class DataTest {
         c.setTime(inicio);
         c.add(Calendar.DATE, -30);  //Valor referente a 1 m�s
         Date data = c.getTime();
+        
+        System.out.println(inicio);
+        
         System.out.println(data);
+        
+        
     }
 }

@@ -22,8 +22,30 @@ public class CarrinhoApp extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		initComponents();
+		initListeners();
 		
-
+		primaryStage.setScene(cena);
+		primaryStage.setTitle("Hello JavaFX");
+		primaryStage.show();
+	}
+	
+	public void initComponents() {
+		pane = new AnchorPane();
+		
+		cena = new Scene(pane);
+		
+		tbCarrinho = new TableView<ItensProperty>();
+		
+		columnProduto = new TableColumn<ItensProperty, String>("Produto");
+		
+		columnPreco = new TableColumn<ItensProperty, Double>("Preco");
+		
+		
+	}
+	
+	public void initListeners() {
+		
 	}
 
 }
