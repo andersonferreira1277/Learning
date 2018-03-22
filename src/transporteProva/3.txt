@@ -1,0 +1,19 @@
+1º Erro no trecho "v.alterarEstabilidade();, 
+v foi declarado como Veiculo que não possui o método alterarEstabilidade(), 
+logo é néssario fazer um cast ou criar o método na classe Veiculo.
+
+E " e "Terrestre t = new Veiculo();", O classe Terrestre tem os atributos e médodos de Veiculo, 
+no código foi tentado fazer o inverso, Criar um Veiculo do tipo Terrestre.
+
+
+
+
+
+
+
+2º  Existe polimorfismo quando a classe Terrestre e Aereo implementa os métodos de Veiculo e a 
+classe Helicoptero e Aviao implementa a classe Aero, um objeto do tipo Veiculo pode ter qualquer 
+objeto do diagrama abaixo.
+
+No método main, primeira linha, é um exemplo de polimorfismo onde o objeto do tipo Veiculo recebe
+ um objeto do tipo Helicoptero.

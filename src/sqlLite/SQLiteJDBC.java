@@ -74,6 +74,7 @@ public class SQLiteJDBC {
 		
 		try {
 			Statement stmt = c.createStatement();
+			c.setAutoCommit(false);
 			String sql = "SELECT * FROM COMPANY;";
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
@@ -101,7 +102,34 @@ public class SQLiteJDBC {
 		Connection c = connect();
 		
 		try {
+			c.setAutoCommit(false);
+			Statement stmt = c.createStatement();
+			String sql = "UPDATE COMPANY set SALARY = 25000.00 where ID=1;";
+			stmt.executeUpdate(sql);
+			c.commit();
+			stmt.close();
+			closeConnection(c);
+			select();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void delete() {
+		Connection c = connect();
+		
+		try {
+			c.setAutoCommit(false);
+			Statement stmt = c.createStatement();
 			
+			String sql = "DELETE from COMPANY where ID=2;";
+			stmt.executeUpdate(sql);
+			c.commit();
+			
+			stmt.close();
+			closeConnection(c);
+			
+			select();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
