@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class JDBCDriver {
 	
-	private static String url = "jdbc:hsqldb:file:db/teste";
+	private static String url = "jdbc:hsqldb:file:db/teste;hsqldb.lock_file=false";
 	private static String user = "anderson";
 	private static String password = "12345";
 	
