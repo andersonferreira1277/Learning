@@ -17,6 +17,7 @@ import javafx.scene.control.TreeTableColumn.CellDataFeatures;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafxTreeView.TView.Employee;
 
 public class TView extends Application{
 	
@@ -27,15 +28,15 @@ public class TView extends Application{
     private VBox layout;
 	
 	@FXML
-    private TreeTableView<Conta> tb;
+    private TreeTableView<Employee> tb;
 
     @FXML
-    private TreeTableColumn<Conta, String> tcNome;
+    private TreeTableColumn<Employee, String> tcNome;
 
     @FXML
-    private TreeTableColumn<Conta, Float> tcValor;
+    private TreeTableColumn<Employee, String> tcValor;
     
-    TreeItem<Conta> itens = new TreeItem<Conta>(new Conta("Conta", 15));
+    TreeItem<Employee> itens = new TreeItem<Employee>(new Employee("Anderson", 20));
 
 	public static void main(String[] args) {
 		
@@ -51,24 +52,24 @@ public class TView extends Application{
 		
 		
 		
-		tcNome.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Conta,String>, ObservableValue<String>>() {
+		tcNome.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Employee,String>, ObservableValue<String>>() {
 			
 			@Override
-			public ObservableValue<String> call(CellDataFeatures<Conta, String> param) {
+			public ObservableValue<String> call(CellDataFeatures<Employee, String> param) {
 				// TODO Auto-generated method stub
-				return new SimpleStringProperty(param.getValue().getValue().getNome());
+				return new ReadOnlyStringWrapper(param.getValue().getValue().getNome());
 			}
 		});
-		tcValor.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Conta,Float>, ObservableValue<Float>>() {
+		tcValor.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Employee,String>, ObservableValue<String>>() {
 			
 			@Override
-			public ObservableValue<Float> call(CellDataFeatures<Conta, Float> param) {
+			public ObservableValue<String> call(CellDataFeatures<Employee, String> param) {
 				// TODO Auto-generated method stub
-				return new SimpleFloatProperty(param.getValue().getValue().getValor()).asObject();
+				return new ReadOnlyStringWrapper(param.getValue().getValue().getValor());
 			}
 		});
-		
-		itens.getChildren().add(new TreeItem<Conta>(new Conta("teste", 10)));
+;		
+		itens.getChildren().add(new TreeItem<Employee>(new Employee("teste", 10)));
 		//itens.getChildren()
 		
 		itens.setExpanded(true);
@@ -82,6 +83,31 @@ public class TView extends Application{
 		stage.setScene(cena);
 		
 		stage.show();
+		
+	}
+	
+	public class Employee{
+		
+		private SimpleStringProperty nome;
+		private SimpleStringProperty valor;
+		
+		public Employee(String nome, float valor) {
+			this.nome = new SimpleStringProperty(nome);
+			this.valor = new SimpleStringProperty(Float.toString(valor));
+		}
+		
+		public String getNome() {
+			return nome.get();
+		}
+		public void setNome(SimpleStringProperty nome) {
+			this.nome = nome;
+		}
+		public String getValor() {
+			return valor.get();
+		}
+		public void setValor(SimpleStringProperty valor) {
+			this.valor = valor;
+		}
 		
 	}
 
