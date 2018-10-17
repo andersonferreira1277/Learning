@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30/05/2018 15:39:17 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+	<class name="estudoHibernate.Artista" table="ARTISTAS">
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<property name="nome" length="100" />
+		<property name="banda" />
+		<property name="pais" length="100" />
+	</class>
+</hibernate-mapping>

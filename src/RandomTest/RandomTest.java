@@ -17,7 +17,7 @@ public class RandomTest {
         Random random = new Random();
         int count = 0;
         while (count <= 10){
-            System.out.println(random.nextInt(2));
+            System.out.println(random.nextInt(20));
             count++;
         }
     }

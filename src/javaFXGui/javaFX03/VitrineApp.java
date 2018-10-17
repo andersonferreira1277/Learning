@@ -1,8 +1,6 @@
 package javaFXGui.javaFX03;
 
 
-import com.sun.org.apache.xerces.internal.xs.ItemPSVI;
-
 import javafx.application.Application;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
